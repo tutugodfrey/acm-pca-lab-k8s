@@ -1,0 +1,16 @@
+{
+   "Version": "2012-10-17",
+   "Statement": [
+     {
+       "Sid": "awspcaissuer",
+       "Action": [
+         "acm-pca:DescribeCertificateAuthority",
+         "acm-pca:GetCertificate",
+         "acm-pca:IssueCertificate"
+       ],
+       "Effect": "Allow",
+       "Resource": "arn:aws:acm-pca:us-east-2:022693575788:certificate-authority/6319d737-3962-4a21-858c-fbcfc762bdb4"
+     }
+   ]
+ }
+

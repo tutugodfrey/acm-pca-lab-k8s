@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: acm-pca-lab-demo
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  tls:
+  - hosts:
+    - a57c76bae6a124e3cbc5cc2046ff8c09-29a6f9ef9c76c74b.elb.us-east-2.amazonaws.com
+    secretName: eks-example-cert
+  rules:
+  - host: a57c76bae6a124e3cbc5cc2046ff8c09-29a6f9ef9c76c74b.elb.us-east-2.amazonaws.com
+    http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+            name: hello-world
+            port:
+              number: 80
+      - path: /nginx
+        pathType: 
+        backend:
+          service:
+            name: myapp 
+            port:
+              number: 80
+
