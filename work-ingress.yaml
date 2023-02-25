@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: example-ingress
+  namespace: work
+  annotations:
+    kubernetes.io/ingress-class: "nginx"
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - app.work.kloudln.com
+    - test.work.kloudln.com
+    - admin.work.kloudln.com
+      #- a33600829083047d9b497c8d3bad82bc-2109025260.us-east-1.elb.amazonaws.com  
+    secretName: eks-example-cert
+  rules:
+  - host: app.work.kloudln.com
+    #- host: a33600829083047d9b497c8d3bad82bc-2109025260.us-east-1.elb.amazonaws.com 
+    http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+            name: app-work
+            port:
+              number: 80
+  - host: test.work.kloudln.com
+    http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+            name: test-work
+            port:
+              number: 80
+  - host: admin.work.kloudln.com
+    http:
+      paths:
+      - path: /
+        pathType: Exact
+        backend:
+          service:
+            name: echo-service
+            port:
+              number: 80
+

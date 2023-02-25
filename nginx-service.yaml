@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-backend-protocols: http
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: arn:aws:acm:us-east-1:366425941000:certificate/d2563beb-665e-4d2d-ac3c-47f9fafecab5
+    service.beta.kubernetes.io/aws-load-balancer-ssl-ports: https
+  creationTimestamp: "2023-02-24T06:25:10Z"
+  finalizers:
+  - service.kubernetes.io/load-balancer-cleanup
+  labels:
+    app: nginx
+  name: nginx
+  namespace: default
+  resourceVersion: "772209"
+  uid: d4ac968f-e5e2-42d4-87a5-cff4d25c0d1b
+spec:
+  allocateLoadBalancerNodePorts: true
+  clusterIP: 10.100.250.189
+  clusterIPs:
+  - 10.100.250.189
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: 80-80
+    nodePort: 30520
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  - name: https
+    nodePort: 32645
+    port: 443
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: nginx
+  sessionAffinity: None
+  type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - hostname: ad4ac968fe5e242d487a5cff4d25c0d1-519315962.us-east-1.elb.amazonaws.com

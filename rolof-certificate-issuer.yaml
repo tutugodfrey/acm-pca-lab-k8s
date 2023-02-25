@@ -1,0 +1,7 @@
+apiVersion: awspca.cert-manager.io/v1beta1
+kind: AWSPCAClusterIssuer
+metadata:
+  name: rolof-cert-issuer
+spec:
+  arn: arn:aws:acm-pca:us-east-1:366425941000:certificate-authority/6b8c10c8-ef6d-403a-836e-3646f3b3f8f8
+  region: us-east-1

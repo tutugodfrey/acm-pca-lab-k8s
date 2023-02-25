@@ -1,0 +1,24 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lms-cert
+  namespace: lms
+spec:
+  commonName: lms.kloudln.com
+  dnsNames:
+  - lms.kloudln.com
+  - admin.lms.kloudln.com
+  - login.lms.kloudln.com
+  duration: 2060h0m0s
+  issuerRef:
+    group: awspca.cert-manager.io
+    kind: AWSPCAClusterIssuer
+    name: rolof-cert-issuer
+  renewBefore: 360h0m0s
+  secretName: lms-cert-secret
+  usages:
+  - server auth
+  - client auth
+  privateKey:
+    algorithm: "RSA"
+    size: 2048

@@ -1,0 +1,23 @@
+kind: Certificate
+apiVersion: cert-manager.io/v1
+metadata:
+  name: eks-cert
+  namespace: acm-pca-lab-demo
+spec:
+  commonName: app.kloudln.com
+  dnsNames: 
+    #- a33600829083047d9b497c8d3bad82bc-2109025260.us-east-1.elb.amazonaws.com
+  - app.kloudln.com
+  duration: 2160h0m0s
+  issuerRef:
+    group: awspca.cert-manager.io
+    kind: AWSPCAClusterIssuer
+    name: demo-test-root-ca
+  renewBefore: 360h0m0s
+  secretName: eks-example-cert
+  usages:
+    - server auth
+    - client auth
+  privateKey:
+    algorithm: "RSA"
+    size: 2048

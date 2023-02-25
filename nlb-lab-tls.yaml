@@ -1,0 +1,23 @@
+kind: Certificate
+apiVersion: cert-manager.io/v1
+metadata:
+  name: nlb-lab-tls-cert
+spec:
+  #commonName: e2e-eks-example
+  commonName: nlb.kloudln.com
+  dnsNames:
+    #- k8s-default-nlbtlsap-5583fd0a04-3d8832058330c9f6.elb.us-west-2.amazonaws.com
+    - nlb.kloudln.com
+  duration: 2160h0m0s
+  issuerRef:
+    group: awspca.cert-manager.io
+    kind: AWSPCAClusterIssuer
+    name: demo-test-root-ca
+  renewBefore: 360h0m0s
+  secretName: nlb-tls-app-secret
+  usages:
+    - server auth
+    - client auth
+  privateKey:
+    algorithm: "RSA"
+    size: 2048
